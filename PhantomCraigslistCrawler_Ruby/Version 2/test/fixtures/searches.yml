@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  userIDs: MyString
+  minPrice: MyString
+  maxPrice: MyString
+  keywords: MyText
+  categoryURL: MyString
+  listingIDs: MyText
+
+two:
+  userIDs: MyString
+  minPrice: MyString
+  maxPrice: MyString
+  keywords: MyText
+  categoryURL: MyString
+  listingIDs: MyText

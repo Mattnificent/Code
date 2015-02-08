@@ -1,0 +1,41 @@
+<%= form_for(@search) do |f| %>
+  <% if @search.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@search.errors.count, "error") %> prohibited this search from being saved:</h2>
+
+      <ul>
+      <% @search.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :userIDs %><br>
+    <%= f.text_field :userIDs %>
+  </div>
+  <div class="field">
+    <%= f.label :minPrice %><br>
+    <%= f.text_field :minPrice %>
+  </div>
+  <div class="field">
+    <%= f.label :maxPrice %><br>
+    <%= f.text_field :maxPrice %>
+  </div>
+  <div class="field">
+    <%= f.label :keywords %><br>
+    <%= f.text_area :keywords %>
+  </div>
+  <div class="field">
+    <%= f.label :categoryURL %><br>
+    <%= f.text_field :categoryURL %>
+  </div>
+  <div class="field">
+    <%= f.label :listingIDs %><br>
+    <%= f.text_area :listingIDs %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

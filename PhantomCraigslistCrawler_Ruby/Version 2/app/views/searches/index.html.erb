@@ -1,0 +1,37 @@
+<h1>Listing searches</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Userids</th>
+      <th>Minprice</th>
+      <th>Maxprice</th>
+      <th>Keywords</th>
+      <th>Categoryurl</th>
+      <th>Listingids</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @searches.each do |search| %>
+      <tr>
+        <td><%= search.userIDs %></td>
+        <td><%= search.minPrice %></td>
+        <td><%= search.maxPrice %></td>
+        <td><%= search.keywords %></td>
+        <td><%= search.categoryURL %></td>
+        <td><%= search.listingIDs %></td>
+        <td><%= link_to 'Show', search %></td>
+        <td><%= link_to 'Edit', edit_search_path(search) %></td>
+        <td><%= link_to 'Destroy', search, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Search', new_search_path %>

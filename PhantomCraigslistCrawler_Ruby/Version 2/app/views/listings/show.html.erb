@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Userids:</strong>
+  <%= @listing.userIDs %>
+</p>
+
+<p>
+  <strong>Clistnumber:</strong>
+  <%= @listing.cListNumber %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @listing.title %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @listing.price %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @listing.location %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @listing.date %>
+</p>
+
+<p>
+  <strong>Descriptionurl:</strong>
+  <%= @listing.descriptionURL %>
+</p>
+
+<p>
+  <strong>Pictureurls:</strong>
+  <%= @listing.pictureURLs %>
+</p>
+
+<p>
+  <strong>Sellersemail:</strong>
+  <%= @listing.sellersEmail %>
+</p>
+
+<%= link_to 'Edit', edit_listing_path(@listing) %> |
+<%= link_to 'Back', listings_path %>

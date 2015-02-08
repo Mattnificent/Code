@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Userids:</strong>
+  <%= @search.userIDs %>
+</p>
+
+<p>
+  <strong>Minprice:</strong>
+  <%= @search.minPrice %>
+</p>
+
+<p>
+  <strong>Maxprice:</strong>
+  <%= @search.maxPrice %>
+</p>
+
+<p>
+  <strong>Keywords:</strong>
+  <%= @search.keywords %>
+</p>
+
+<p>
+  <strong>Categoryurl:</strong>
+  <%= @search.categoryURL %>
+</p>
+
+<p>
+  <strong>Listingids:</strong>
+  <%= @search.listingIDs %>
+</p>
+
+<%= link_to 'Edit', edit_search_path(@search) %> |
+<%= link_to 'Back', searches_path %>

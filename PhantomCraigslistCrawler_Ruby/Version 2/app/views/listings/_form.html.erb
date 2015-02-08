@@ -1,0 +1,53 @@
+<%= form_for(@listing) do |f| %>
+  <% if @listing.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@listing.errors.count, "error") %> prohibited this listing from being saved:</h2>
+
+      <ul>
+      <% @listing.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :userIDs %><br>
+    <%= f.text_field :userIDs %>
+  </div>
+  <div class="field">
+    <%= f.label :cListNumber %><br>
+    <%= f.text_field :cListNumber %>
+  </div>
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :price %><br>
+    <%= f.text_field :price %>
+  </div>
+  <div class="field">
+    <%= f.label :location %><br>
+    <%= f.text_field :location %>
+  </div>
+  <div class="field">
+    <%= f.label :date %><br>
+    <%= f.text_field :date %>
+  </div>
+  <div class="field">
+    <%= f.label :descriptionURL %><br>
+    <%= f.text_field :descriptionURL %>
+  </div>
+  <div class="field">
+    <%= f.label :pictureURLs %><br>
+    <%= f.text_area :pictureURLs %>
+  </div>
+  <div class="field">
+    <%= f.label :sellersEmail %><br>
+    <%= f.text_field :sellersEmail %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
