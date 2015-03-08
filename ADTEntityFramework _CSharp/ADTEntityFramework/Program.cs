@@ -694,18 +694,21 @@ namespace ADTEntityFramework
         
         private string LookupStatusesToString()
         {
-            string messageTypeFullName = "unknown";
+            string messageTypeFullName;
             switch (MessageType)
             {
                 case "A01": messageTypeFullName = "A01 - Admit"; break;
                 case "A02": messageTypeFullName = "A02 - Transfer"; break;
                 case "A03": messageTypeFullName = "A03 - Discharge"; break;
+                case "A04": messageTypeFullName = "A04 - Register"; break;
+                case "A05": messageTypeFullName = "A05 - Pre-admit"; break;
                 case "A06": messageTypeFullName = "A06 - Out=>In"; break;
                 case "A07": messageTypeFullName = "A07 - In=>Out"; break;
                 case "A08": messageTypeFullName = "A08 - Update"; break;
                 case "A11": messageTypeFullName = "A11 - Cancel admit"; break;
                 case "A12": messageTypeFullName = "A12 - Cancel transfer"; break;
                 case "A13": messageTypeFullName = "A13 - Cancel discharge"; break;
+                default:    messageTypeFullName = MessageType + " - Unknown"; break;
             }
 
             return String.Format( 

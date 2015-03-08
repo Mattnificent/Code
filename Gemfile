@@ -1,19 +1,23 @@
 source 'https://rubygems.org'
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0.rc2'
 
-# Use mysql2 as the database for Active Record
+# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'rails', '4.0.0'
+
+# Use sqlite3 as the database for Active Record
 gem 'mysql2'
 
 gem "nokogiri"
 
-gem "mechanize"
+gem "gmail"
 
-gem 'axlsx', '~> 2.0.1'
+gem "axlsx"
+
+# gem "mechanize", "~> 2.7.2"
+
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0.rc2'
+gem 'sass-rails', '~> 4.0.0'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -35,7 +39,13 @@ gem 'jbuilder', '~> 1.2'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
+
+  # 1.9 and above
   gem 'sdoc', require: false
+
+  # 1.8 and below
+  # gem 'sdoc', :require => false
+
 end
 
 # Use ActiveModel has_secure_password
