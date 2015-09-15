@@ -1,0 +1,64 @@
+
+<script type="text/x-red" data-template-name="fromfile">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+
+    <div class="form-row">
+         <label for="node-input-fileName"><i class="fa fa-file"></i> Filename</label>
+         <input type="text" id="node-input-fileName" placeholder="fileName">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-location"><i class="fa fa-random"></i> Location</label>
+        <select type="text" id="node-input-location" style="display: inline-block; width: 250px; vertical-align: top;">
+            <option value="nodeServer">Node Server</option>
+        </select>
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-fileType"><i class="fa fa-random"></i> File Type</label>
+        <select type="text" id="node-input-fileType" style="display: inline-block; width: 250px; vertical-align: top;">
+            <option value="text">Text</option>
+        </select>
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-dataType"><i class="fa fa-random"></i> Data Type</label>
+        <select type="text" id="node-input-dataType" style="display: inline-block; width: 250px; vertical-align: top;">
+            <option value="json">JSON</option>
+        </select>
+    </div>
+
+</script>
+
+<script type="text/x-red" data-help-name="fromfile">
+    <p>Reads data from a file.</p>
+</script>
+
+<script type="text/javascript">
+    RED.nodes.registerType('fromfile',{
+        category: 'input',
+        color: '#00a0b0',
+        defaults: {
+            name: {value:"fromfile"},
+            fileName: { value: '', required: true },
+            location: { value:"nodeServer" },
+            fileType: { value:"text" },
+            dataType: { value:"json" }
+        },
+        inputs:1,
+        outputs:1,
+        icon: "file.png",
+        label: function() {
+            return this.name|| this.fileName;
+        }
+    });
+</script>
+
+
+
+
+
+

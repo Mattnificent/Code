@@ -1,0 +1,161 @@
+
+<script type="text/x-red" data-template-name="tofile">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+
+    <div class="form-row">
+         <label for="node-input-fileName"><i class="fa fa-file"></i> Filename</label>
+         <input type="text" id="node-input-fileName" placeholder="fileName">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-select-complete"><i class="fa fa-list"></i> Output</label>
+        <select type="text" id="node-input-select-complete" style="display: inline-block; width: 250px; vertical-align: top;">
+            <option value="false">message property</option>
+            <option value="true">complete msg object</option>
+        </select>
+    </div>
+    <div class="form-row" id="node-prop-row">
+        <label for="node-input-specific">&nbsp;</label>msg.<input type="text" style="width:208px" id="node-input-specific">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-location"><i class="fa fa-random"></i> Location</label>
+        <select type="text" id="node-input-location" style="display: inline-block; width: 250px; vertical-align: top;">
+            <option value="nodeServer">Node Server</option>
+            <option value="googleDrive">Google Drive</option>
+        </select>
+    </div>
+
+    <div class="form-row" id="google-drive-share-with">
+         <label for="node-input-shareWith"><i class="fa fa-file"></i> Share With</label>
+         <input type="text" id="node-input-shareWith" placeholder="email address">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-fileType"><i class="fa fa-random"></i> File Type</label>
+        <select type="text" id="node-input-fileType" style="display: inline-block; width: 250px; vertical-align: top;">
+            <option value="text">Text</option>
+            <option value="spreadsheet">Spreadsheet</option>
+        </select>
+    </div>
+
+    <div class="form-row" id="include-object-key-column">
+        <label for="node-input-includeObjectKeyColumn" style="width: 150px;"><i class="fa fa-gears"></i> Option 1</label>
+        <input type="checkbox" style="width: 5%;" id="node-input-includeObjectKeyColumn" >include object key column
+    </div>
+
+    <div class="form-row" id="node-server-spreadsheet-warning">
+        <label style="width: 440px; color:red"><i class="fa fa-warning"></i> Warning: Node server spreadsheets are written as csv; if there are commas anywhere in your data, you will be sorry...</label>
+    </div>
+
+</script>
+
+<script type="text/x-red" data-help-name="tofile">
+    <p>Reads data from a file.</p>
+</script>
+
+<script type="text/javascript">
+    RED.nodes.registerType('tofile',{
+        category: 'output',
+        color: '#00a0b0',
+        defaults: {
+            name: {value:"tofile"},
+            fileName: { value: '', required: true },
+            location: { value:"nodeServer" },
+
+            // Google Drive location only
+            shareWith: { value: 'mbeck@smartprocure.us', required: false },
+
+            fileType: { value:"text" },
+            complete: {value:"false", required:true },
+            specific: { value:"payload" },
+
+            // Spreadsheet fileType only
+            includeObjectKeyColumn: { }
+
+        },
+        inputs:1,
+        outputs:0,
+        icon: "file.png",
+        label: function() {
+            return this.name|| this.fileName;
+        },
+        oneditprepare: function() {
+            if (this.location == "nodeServer") {
+                $("#google-drive-share-with").hide();
+            } else if (this.location == "googleDrive") {
+                $("#google-drive-share-with").show();
+            }
+
+            if (this.fileType == "text") {
+                $("#include-object-key-column").hide();
+            } else if (this.fileType == "spreadsheet") {
+                $("#include-object-key-column").show();
+            }
+
+            if (this.location == "nodeServer" && this.fileType == "spreadsheet")
+                $("#node-server-spreadsheet-warning").show();
+            else
+                $("#node-server-spreadsheet-warning").hide();
+
+            if (this.complete === "true" || this.complete === true) {
+                // show complete message object
+                $("#node-input-select-complete").val("true");
+                $("#node-prop-row").hide();
+            } else {
+                // show msg.[   ]
+                var property = (!this.complete||(this.complete === "false")) ? "payload" : this.complete+"";
+                $("#node-input-select-complete").val("false");
+                $("#node-input-complete").val(property);
+                $("#node-prop-row").show();
+            }
+
+
+
+            $("#node-input-location").on("change",function() {
+                if (this.value == "nodeServer") {
+                    $("#google-drive-share-with").hide();
+                    if($("#node-input-fileType").val() == "spreadsheet")
+                        $("#node-server-spreadsheet-warning").show();
+                } else if (this.value == "googleDrive") {
+                    $("#google-drive-share-with").show();
+                    $("#node-server-spreadsheet-warning").hide();
+                }
+
+            });
+
+            $("#node-input-fileType").on("change",function() {
+                if (this.value == "text") {
+                    $("#include-object-key-column").hide();
+                    $("#node-server-spreadsheet-warning").hide();
+                } else if (this.value == "spreadsheet") {
+                    $("#include-object-key-column").show();
+                    if($("#node-input-location").val() == "nodeServer")
+                        $("#node-server-spreadsheet-warning").show();
+                }
+
+            });
+
+            $("#node-input-select-complete").change(function() {
+                var v = $("#node-input-select-complete option:selected").val();
+                $("#node-input-complete").val(v);
+                if (v !== "true") {
+                    $("#node-input-complete").val("payload");
+                    $("#node-prop-row").show();
+                    $("#node-input-complete").focus();
+                } else {
+                    $("#node-prop-row").hide();
+                }
+            });
+        }
+    });
+</script>
+
+
+
+
+
+
